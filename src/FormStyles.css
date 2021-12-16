@@ -1,0 +1,17 @@
+.Form-main {
+  max-width: 30rem;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .Form-main {
+    margin: 0 .5rem;
+  }
+}
+
+.Form-inputs {
+  width: 75%;
+  margin-top: 1.5rem;
+  text-align: left;
+}
