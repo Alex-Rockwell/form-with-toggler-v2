@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {useContext} from 'react'
 import './FormStyles.css'
 import { InputLabel, MenuItem, Select, Typography, FormControl, Input, FormControlLabel, Checkbox } from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person';
@@ -25,45 +25,42 @@ const words = {
   }
 }
 
-class Form extends Component {
-  static contextType = LanguageContext
-  
-  render() {
-    const {language, changeLanguage} = this.context
-    const {email, signIn, password, remember} = words[language]
-    return (
-      <main className='Form-main'>
-        <CustomPaper>
+function Form(props) {
+  const {language, changeLanguage} = useContext(LanguageContext)
+  const {email, signIn, password, remember} = words[language]
 
-          <CustomAvatar>
-            <PersonIcon />
-          </CustomAvatar>
+  return (
+    <main className='Form-main'>
+    <CustomPaper>
 
-          <Typography variant='h5' sx={{marginTop: '.5rem'}}>{signIn}</Typography>
+      <CustomAvatar>
+        <PersonIcon />
+      </CustomAvatar>
 
-          <Select labelId='selectLabel' value={language} sx={{marginTop: '1rem'}} onChange={changeLanguage}>
-            <MenuItem value='english'>English</MenuItem>
-            <MenuItem value='french'>French</MenuItem>
-            <MenuItem value='spanish'>Spanish</MenuItem>
-          </Select>
+      <Typography variant='h5' sx={{marginTop: '.5rem'}}>{signIn}</Typography>
 
-          <form className='Form-inputs'>
-            <FormControl required fullWidth sx={{marginBottom: '2rem',}}>
-              <InputLabel htmlFor='email'>{email}</InputLabel>
-              <Input id='email' name='email'/>
-            </FormControl>
-            <FormControl required fullWidth sx={{marginBottom: '2rem',}}>
-              <InputLabel htmlFor='password'>{password}</InputLabel>
-              <Input id='password' name='password'/>
-            </FormControl>
-            <FormControlLabel control={<Checkbox color='primary'/>} label={remember} sx={{marginBottom: '2rem',}}/>
-            <CustomButton variant='contained' type='submit' fullWidth color='primary' sx={{marginBottom: '2rem',}}>{signIn}</CustomButton>
-          </form>
+      <Select labelId='selectLabel' value={language} sx={{marginTop: '1rem'}} onChange={changeLanguage}>
+        <MenuItem value='english'>English</MenuItem>
+        <MenuItem value='french'>French</MenuItem>
+        <MenuItem value='spanish'>Spanish</MenuItem>
+      </Select>
 
-        </CustomPaper>
-      </main>
-    )
-  }
+      <form className='Form-inputs'>
+        <FormControl required fullWidth sx={{marginBottom: '2rem',}}>
+          <InputLabel htmlFor='email'>{email}</InputLabel>
+          <Input id='email' name='email'/>
+        </FormControl>
+        <FormControl required fullWidth sx={{marginBottom: '2rem',}}>
+          <InputLabel htmlFor='password'>{password}</InputLabel>
+          <Input id='password' name='password'/>
+        </FormControl>
+        <FormControlLabel control={<Checkbox color='primary'/>} label={remember} sx={{marginBottom: '2rem',}}/>
+        <CustomButton variant='contained' type='submit' fullWidth color='primary' sx={{marginBottom: '2rem',}}>{signIn}</CustomButton>
+      </form>
+
+    </CustomPaper>
+  </main>
+  )
 }
 
 export default Form
